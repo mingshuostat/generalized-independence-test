@@ -2,6 +2,23 @@
 
 This repository contains a lightweight R implementation of the generalized independence test, together with a real data example using GTEx normalized expression data.
 
+## Testing Problem
+
+Given two random variables, $X$ and $Y$, with marginal distributions $P_X$ and $P_Y$ over the spaces $\mathcal{X}$ and $\mathcal{Y}$, respectively, and their joint distribution $P_{XY}$ on $\mathcal{X} \times \mathcal{Y}$, the goal is to test the hypothesis:
+
+$$
+H_0: P_{XY}=P_X P_Y \quad \text{ versus } \quad H_1: P_{XY} \neq P_X P_Y
+$$
+
+using paired samples $\{(X_i, Y_i)\}_{i=1}^n$ drawn independently and identically from $P_{XY}$.
+
+In the code, `X` and `Y` should be paired data matrices with the same number of rows:
+
+- `X` is an `n x p1` matrix.
+- `Y` is an `n x p2` matrix.
+- Rows correspond to the `n` paired samples.
+- Columns correspond to dimensions or features.
+
 ## Large File Storage
 
 The GTEx data files in `data/gtex/` are tracked with Git LFS because one file exceeds GitHub's normal file size limit.
@@ -31,7 +48,7 @@ The function uses only base R. No additional R packages are required.
 
 ### Arguments
 
-- `X`, `Y`: numeric vectors, matrices, or data frames with the same number of rows. Each row is one observation.
+- `X`, `Y`: paired numeric data matrices, or objects coercible to matrices, with the same number of rows. `X` is `n x p1` and `Y` is `n x p2`; rows are paired samples and columns are dimensions/features.
 - `k`: number of nearest/farthest neighbors used to build the graph. The default is `floor(sqrt(nrow(X)))`.
 - `robustgraph`: whether to use the robust graph construction. The default is `TRUE`.
 - `lambda`: degree-regularization parameter for the robust graph. The default is `0.3`.
