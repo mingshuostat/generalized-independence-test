@@ -10,7 +10,11 @@ $$
 H_0: P_{XY}=P_X P_Y \quad \text{ versus } \quad H_1: P_{XY} \neq P_X P_Y
 $$
 
-using paired samples $\{(X_i, Y_i)\}_{i=1}^n$ drawn independently and identically from $P_{XY}$.
+using paired samples drawn independently and identically from $P_{XY}$:
+
+$$
+\{(X_i, Y_i)\}_{i=1}^n \overset{\mathrm{i.i.d.}}{\sim} P_{XY}.
+$$
 
 In the code, `X` and `Y` should be paired data matrices with the same number of rows:
 
